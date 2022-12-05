@@ -12,7 +12,6 @@ def process_data_1(data):
 def process_data_2(data):
     return
 
-
 if __name__ == "__main__":
     start = pfc()
     day = ""
