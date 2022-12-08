@@ -88,7 +88,6 @@ def process_data_1(data):
 
 def process_data_2(data):
     root_size, smallest_size = recursive_part_2(data, float('inf'), 1)
-    print(-40000000 + root_size)
     root_size, smallest_size = recursive_part_2(data, float('inf'), -40000000 + root_size)
     return smallest_size
 
