@@ -69,8 +69,6 @@ def process_data_2(data):
 
     best_sol = 0
     for j, (v1, p1) in enumerate(solutions.items()):
-        if j%1000 == 0:
-            print(f"j={j}")
         for k, (v2, p2) in enumerate(solutions.items()):
             if (k <= j) or (p1 + p2 <= best_sol): continue
             if len(set(v1)&set(v2))==1:
