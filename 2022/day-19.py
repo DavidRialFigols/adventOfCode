@@ -47,11 +47,7 @@ def evaluate_blueprint(bp, init_minutes):
     init_state = (init_minutes, tuple(items), tuple(robots), int(init_minutes*(init_minutes-1)/2))
     states = [init_state]
     visited = set([])
-    i = 0
     while states:
-        # 
-        # print(f"\nStates: {states}\n\nNext state: {states[-1]}\nBest result: {best_result}\nIteration: {i}")
-        # a = input("next state?")
         state = states.pop()
         left_min, items, robots = state[0], state[1], state[2]
         
@@ -59,14 +55,7 @@ def evaluate_blueprint(bp, init_minutes):
             if best_result < items[3]: best_result = items[3]
             continue
         if state[3] <= best_result: 
-            # print("cutted")
             continue
-        if i%100000==0:
-            print (f"iteration: {i} || best_result {best_result} || states_left: {len(states)} || len visited: {len(visited)}")
-        i += 1
-        # if len(visited) > 100:
-        #     print(visited)
-        #     break
 
         options = get_options(bp, items, robots)
         items = obtain_resources(items, robots)
@@ -76,19 +65,13 @@ def evaluate_blueprint(bp, init_minutes):
             states.append(ns)
             visited.add(ns)
         
-        # if left_min == 1: 
-        #     continue
-        
         for op in options:
             new_items = obtain_resources(op[1], robots)
             ns = (left_min-1, new_items, op[0], int((left_min-1)*left_min/2)+(left_min-1)*op[0][3]+new_items[3])
             if ns not in visited:
                 states.append(ns)
                 visited.add(ns)
-        #  states.sort(key=lambda x: x[3])
-
-
-    print(f"best_result {best_result} in i={i}")
+                
     return best_result
 
 def process_data_1(data):
@@ -108,8 +91,8 @@ if __name__ == "__main__":
     day = "19"
     data = read_file(day)
     print(f"Data: {data}")
-    # result_1 = process_data_1(copy.deepcopy(data))
-    # print(f"Result part 1: {result_1}")
+    result_1 = process_data_1(copy.deepcopy(data))
+    print(f"Result part 1: {result_1}")
     result_2 = process_data_2(data)
     print(f"Result part 2: {result_2}")
     print(f"Duration: {pfc()-start}")
