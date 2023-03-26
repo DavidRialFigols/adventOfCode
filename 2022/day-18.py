@@ -40,7 +40,7 @@ def process_data_2(data):
                     break
                 for s in sides:
                     next_sc = (sc[0]+s[0],sc[1]+s[1],sc[2]+s[2])
-                    if next_sc not in visited and next_sc not in data:
+                    if (next_sc not in visited) and (next_sc not in data):
                         visited.append(next_sc)
                         routes.append(route+[next_sc])
                 routes.sort(key=lambda x: max(x[-1]))
