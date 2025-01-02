@@ -29,7 +29,6 @@ def process_data_1(data):
     return possible
 
 def process_data_2(data):
-    # 47326 is too low
     possible = 0
 
     for pattern in data['patterns']:
